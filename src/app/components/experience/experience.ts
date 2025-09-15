@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, inject, AfterViewInit, PLATFORM_ID, ElementRef } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DataService } from '../../core/data.service';
 import { InViewDirective } from '../../shared/in-view.directive';
 
@@ -10,14 +10,26 @@ import { InViewDirective } from '../../shared/in-view.directive';
   templateUrl: './experience.html',
   styleUrls: ['./experience.scss']
 })
-export class ExperienceComponent implements OnInit, OnDestroy {
+export class ExperienceComponent implements AfterViewInit, OnDestroy {
   ds = inject(DataService);
+  private platformId = inject(PLATFORM_ID);
+  private host = inject<ElementRef<HTMLElement>>(ElementRef);
   private obs?: IntersectionObserver;
 
-  ngOnInit(): void {
-    const sec = document.getElementById('experience')!;
-    this.obs = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && this.ds.activeSection.set('experience')), { threshold: .35 });
-    this.obs.observe(sec);
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId) || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
+    const hostElement = this.host.nativeElement;
+    const target = hostElement.closest('section') ?? hostElement;
+
+    this.obs = new IntersectionObserver(
+      entries =>
+        entries.forEach(entry => entry.isIntersecting && this.ds.activeSection.set('experience')),
+      { threshold: 0.35 }
+    );
+    this.obs.observe(target);
   }
   ngOnDestroy(): void { this.obs?.disconnect(); }
 }

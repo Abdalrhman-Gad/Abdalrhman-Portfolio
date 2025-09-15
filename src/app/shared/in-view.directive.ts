@@ -5,7 +5,11 @@ import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@ang
   standalone: true
 })
 export class InViewDirective implements OnInit, OnDestroy {
-  @Input('inView') revealClass = 'reveal';
+  private revealClass = 'reveal';
+  @Input('inView')
+  set revealClassInput(value: string | null | undefined) {
+    this.revealClass = (value ?? '').trim() || 'reveal';
+  }
   private observer?: IntersectionObserver;
 
   constructor(private el: ElementRef, private r: Renderer2) {}

@@ -1,0 +1,26 @@
+nav {
+  position: fixed; top: 10px; left: 50%; transform: translateX(-50%);
+  width: min(1100px, 96vw); z-index: 100;
+  transition: top .25s ease, background .25s ease, border-color .25s ease;
+  border-radius: 16px; border: 1px solid rgba(255,255,255,.08);
+}
+nav.scrolled { top: 0; }
+
+.bar { display:flex; align-items:center; justify-content:space-between; padding: 10px 14px; }
+
+.brand { display:flex; align-items:center; gap:12px; cursor:pointer; }
+.logo {
+  display:grid; place-items:center;
+  width: 34px; height: 34px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--pri), var(--pri-2));
+  color: #0b0c12; font-weight: 900;
+  box-shadow: 0 10px 20px rgba(124,127,255,.25);
+}
+
+.links { display:flex; gap: 12px; }
+.links a {
+  padding: 8px 12px; border-radius: 10px; color: var(--muted);
+  transition: color .2s ease, background .2s ease;
+}
+.links a:hover { color: var(--text); background: rgba(255,255,255,.06); }
+.links a.active { color: #0b0c12; background: linear-gradient(90deg, var(--pri), var(--pri-2)); font-weight: 800; }

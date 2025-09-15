@@ -1,0 +1,15 @@
+<h2 class="section-title">Projects</h2>
+
+<div class="grid cols-3">
+  <article class="project glass" *ngFor="let p of ds.projects" inView (click)="open(p.url)">
+    <div class="badge"><i class="fa-solid fa-code"></i></div>
+    <h3>{{ p.name }}</h3>
+    <p class="muted">{{ p.description }}</p>
+    <div class="tech">
+      <span class="tag" *ngFor="let t of p.tech">{{ t }}</span>
+    </div>
+    <div class="link" *ngIf="p.url">
+      <span>Open</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </div>
+  </article>
+</div>

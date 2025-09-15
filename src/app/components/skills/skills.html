@@ -1,0 +1,16 @@
+<h2 class="section-title">Technical Skills</h2>
+<div class="grid cols-3">
+  <div class="glass skill-card" *ngFor="let g of ds.skillGroups" inView>
+    <h3>{{ g.title }}</h3>
+    <div class="pill-wrap">
+      <span class="tag" *ngFor="let s of g.items">{{ s }}</span>
+    </div>
+  </div>
+</div>
+
+<div class="soft glass" inView>
+  <h3>Soft Skills</h3>
+  <p class="muted">{{ ds.softSkills.join(' · ') }}</p>
+  <h3>Languages</h3>
+  <p class="muted">{{ ds.languages.join(' · ') }}</p>
+</div>

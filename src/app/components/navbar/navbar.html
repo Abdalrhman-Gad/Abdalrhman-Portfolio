@@ -1,0 +1,15 @@
+<nav [class.scrolled]="scrolled" class="glass">
+  <div class="container bar">
+    <div class="brand" (click)="scrollTo('home')">
+      <span class="logo">AG</span>
+      <strong>Abdalrhman Gad</strong>
+    </div>
+
+    <div class="links">
+      <a *ngFor="let s of sections"
+         [class.active]="active() === s.id"
+         href="javascript:void(0)"
+         (click)="scrollTo(s.id)">{{ s.label }}</a>
+    </div>
+  </div>
+</nav>

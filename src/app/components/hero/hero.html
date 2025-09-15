@@ -1,0 +1,47 @@
+<div class="hero glass">
+  <div class="intro">
+    <h1>
+      Hi, I’m <span class="name">{{ ds.name }}</span>
+      <span class="wave">👋</span>
+    </h1>
+    <h2 class="role">
+      <span class="dotnet">.NET</span> Developer & Full-Stack Engineer
+      <span class="cursor"></span>
+    </h2>
+    <p class="muted">
+      {{ ds.summary }}
+    </p>
+
+    <div class="meta">
+      <span class="tag"><i class="fa-solid fa-location-dot"></i> {{ ds.location }}</span>
+      <a class="tag" [href]="'mailto:'+ds.email"><i class="fa-solid fa-envelope"></i> {{ ds.email }}</a>
+      <a class="tag" href="tel:+201095725810"><i class="fa-solid fa-phone"></i> {{ ds.phone }}</a>
+    </div>
+
+    <div class="cta">
+      <a class="btn" href="#projects"><i class="fa-solid fa-rocket"></i> View Projects</a>
+      <a class="btn secondary" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+    </div>
+
+    <div class="links">
+      <a *ngFor="let l of ds.links" class="social" [href]="l.url" target="_blank" rel="noopener">
+        <i [class]="l.icon"></i> <span>{{ l.label }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="stat">
+      <strong>{{ yearExp }}+</strong>
+      <span>Years Experience</span>
+    </div>
+    <div class="stat">
+      <strong>Angular</strong>
+      <span>v9–v19</span>
+    </div>
+    <div class="stat">
+      <strong>.NET</strong>
+      <span>Core & Framework</span>
+    </div>
+  </div>
+</div>

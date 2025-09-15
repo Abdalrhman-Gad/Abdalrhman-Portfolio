@@ -1,0 +1,21 @@
+<h2 class="section-title">Education</h2>
+
+<div class="glass edu" *ngFor="let e of ds.education" inView>
+  <div class="row1">
+    <strong>{{ e.degree }}</strong>
+    <span class="muted">{{ e.period }}</span>
+  </div>
+  <div class="row2">
+    <span>{{ e.school }}</span>
+    <span *ngIf="e.gpa" class="tag">GPA {{ e.gpa }}</span>
+    <span *ngIf="e.honor" class="tag">{{ e.honor }}</span>
+  </div>
+  <ul class="muted" *ngIf="e.details?.length">
+    <li *ngFor="let d of e.details">{{ d }}</li>
+  </ul>
+  <div class="links" *ngIf="e.links?.length">
+    <a *ngFor="let l of e.links" class="tag" [href]="l.url" target="_blank" rel="noopener">
+      <i class="fa-solid fa-link"></i> {{ l.label }}
+    </a>
+  </div>
+</div>

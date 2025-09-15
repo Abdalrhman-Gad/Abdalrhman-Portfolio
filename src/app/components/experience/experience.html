@@ -1,0 +1,18 @@
+<h2 class="section-title">Work Experience</h2>
+
+<div class="timeline">
+  <div class="item glass reveal" *ngFor="let ex of ds.experiences" inView>
+    <div class="head">
+      <div class="role">{{ ex.role }}</div>
+      <div class="company">{{ ex.company }}</div>
+      <div class="period">{{ ex.period }}</div>
+    </div>
+    <p class="muted" *ngIf="ex.description">{{ ex.description }}</p>
+    <ul class="muted" *ngIf="ex.bullets?.length">
+      <li *ngFor="let b of ex.bullets">{{ b }}</li>
+    </ul>
+    <div class="tech" *ngIf="ex.tech?.length">
+      <span class="tag" *ngFor="let t of ex.tech">{{ t }}</span>
+    </div>
+  </div>
+</div>

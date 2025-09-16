@@ -1,59 +1,57 @@
-# AbdalrhmanPortfolio
+# Abdalrhman Portfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.1.
+This repository is now split into a front-end Angular application and a back-end ASP.NET Core API so that the portfolio content can be managed dynamically from a SQLite database.
 
-## Development server
+## Project structure
 
-To start a local development server, run:
-
-```bash
-ng serve
+```
+backend/
+  Portfolio.sln          # Solution that wires the clean architecture backend
+  Portfolio.Api/         # ASP.NET Core Web API (presentation layer)
+  Portfolio.Application/ # Application layer with DTOs and service contracts
+  Portfolio.Domain/      # Domain entities
+  Portfolio.Infrastructure/ # EF Core persistence and service implementations
+frontend/
+  ...                    # Angular 20 SPA that consumes the API
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Prerequisites
 
-## Code scaffolding
+- Node.js 18+
+- .NET 8 SDK (the API uses EF Core with SQLite)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Running the back end
 
 ```bash
-ng generate --help
+cd backend/Portfolio.Api
+# Restore dependencies (first time only)
+dotnet restore
+# Run the API (listening on http://localhost:5000 by default)
+dotnet run --urls http://localhost:5000
 ```
 
-## Building
+The first run creates `portfolio.db` and seeds it with the profile, experience, skills, and projects that the Angular app renders.
 
-To build the project run:
+## Running the front end
 
 ```bash
-ng build
+cd frontend
+npm install
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The Angular app expects the API at `http://localhost:5000/api`. You can change the base URL in `frontend/src/environments/environment.ts` (development) or `frontend/src/environments/environment.production.ts` (production builds).
 
-## Running unit tests
+## Useful commands
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- **Front end build:** `npm run build` (from `frontend/`)
+- **Front end tests:** `npm test`
+- **Back end build:** `dotnet build backend/Portfolio.sln`
 
-```bash
-ng test
-```
+## API overview
 
-## Running end-to-end tests
+The API currently exposes a single endpoint:
 
-For end-to-end (e2e) testing, run:
+- `GET /api/profile` — returns the entire portfolio payload, including summary, links, skills, experience, education, and interests.
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The Angular application consumes this endpoint to populate all sections of the portfolio dynamically.

@@ -1,4 +1,6 @@
-namespace Portfolio.Api.Models;
+namespace Portfolio.Domain.Entities.Skills;
+
+using Portfolio.Domain.Entities.ProfileAggregate;
 
 public class SkillGroup
 {
@@ -9,13 +11,4 @@ public class SkillGroup
     public Profile Profile { get; set; } = null!;
 
     public ICollection<Skill> Skills { get; set; } = new List<Skill>();
-}
-
-public class Skill
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    public int SkillGroupId { get; set; }
-    public SkillGroup SkillGroup { get; set; } = null!;
 }

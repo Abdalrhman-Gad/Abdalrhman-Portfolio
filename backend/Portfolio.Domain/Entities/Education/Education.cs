@@ -1,4 +1,6 @@
-namespace Portfolio.Api.Models;
+namespace Portfolio.Domain.Entities.Education;
+
+using Portfolio.Domain.Entities.ProfileAggregate;
 
 public class Education
 {
@@ -14,23 +16,4 @@ public class Education
 
     public ICollection<EducationDetail> Details { get; set; } = new List<EducationDetail>();
     public ICollection<EducationLink> Links { get; set; } = new List<EducationLink>();
-}
-
-public class EducationDetail
-{
-    public int Id { get; set; }
-    public string Text { get; set; } = string.Empty;
-
-    public int EducationId { get; set; }
-    public Education Education { get; set; } = null!;
-}
-
-public class EducationLink
-{
-    public int Id { get; set; }
-    public string Label { get; set; } = string.Empty;
-    public string Url { get; set; } = string.Empty;
-
-    public int EducationId { get; set; }
-    public Education Education { get; set; } = null!;
 }

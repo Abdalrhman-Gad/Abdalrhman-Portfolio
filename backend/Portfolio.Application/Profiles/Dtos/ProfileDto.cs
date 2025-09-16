@@ -1,12 +1,12 @@
-namespace Portfolio.Api.Dtos;
+namespace Portfolio.Application.Profiles.Dtos;
 
-public record LinkDto(string Label, string Url, string? Icon);
+public sealed record LinkDto(string Label, string Url, string? Icon);
 
-public record SkillGroupDto(string Title, IReadOnlyCollection<string> Items);
+public sealed record SkillGroupDto(string Title, IReadOnlyCollection<string> Items);
 
-public record ProjectDto(string Name, string Description, IReadOnlyCollection<string> Tech, string? Url);
+public sealed record ProjectDto(string Name, string Description, IReadOnlyCollection<string> Tech, string? Url);
 
-public record ExperienceDto(
+public sealed record ExperienceDto(
     string Role,
     string Company,
     string Period,
@@ -14,9 +14,9 @@ public record ExperienceDto(
     IReadOnlyCollection<string> Bullets,
     IReadOnlyCollection<string> Tech);
 
-public record EducationLinkDto(string Label, string Url);
+public sealed record EducationLinkDto(string Label, string Url);
 
-public record EducationDto(
+public sealed record EducationDto(
     string Degree,
     string School,
     string Period,
@@ -25,7 +25,7 @@ public record EducationDto(
     IReadOnlyCollection<string> Details,
     IReadOnlyCollection<EducationLinkDto> Links);
 
-public record ProfileDto(
+public sealed record ProfileDto(
     string Name,
     string Title,
     string Summary,

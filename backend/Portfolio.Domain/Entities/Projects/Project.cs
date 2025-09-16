@@ -1,4 +1,6 @@
-namespace Portfolio.Api.Models;
+namespace Portfolio.Domain.Entities.Projects;
+
+using Portfolio.Domain.Entities.ProfileAggregate;
 
 public class Project
 {
@@ -11,13 +13,4 @@ public class Project
     public Profile Profile { get; set; } = null!;
 
     public ICollection<ProjectTech> Tech { get; set; } = new List<ProjectTech>();
-}
-
-public class ProjectTech
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    public int ProjectId { get; set; }
-    public Project Project { get; set; } = null!;
 }

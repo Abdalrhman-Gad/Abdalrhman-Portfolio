@@ -6,9 +6,13 @@ This repository is now split into a front-end Angular application and a back-end
 
 ```
 backend/
-  Portfolio.Api/        # ASP.NET Core Web API that exposes profile data from SQLite
+  Portfolio.sln          # Solution that wires the clean architecture backend
+  Portfolio.Api/         # ASP.NET Core Web API (presentation layer)
+  Portfolio.Application/ # Application layer with DTOs and service contracts
+  Portfolio.Domain/      # Domain entities
+  Portfolio.Infrastructure/ # EF Core persistence and service implementations
 frontend/
-  ...                  # Angular 20 SPA that consumes the API
+  ...                    # Angular 20 SPA that consumes the API
 ```
 
 ## Prerequisites
@@ -42,7 +46,7 @@ The Angular app expects the API at `http://localhost:5000/api`. You can change t
 
 - **Front end build:** `npm run build` (from `frontend/`)
 - **Front end tests:** `npm test`
-- **Back end build:** `dotnet build backend/Portfolio.Api/Portfolio.Api.csproj`
+- **Back end build:** `dotnet build backend/Portfolio.sln`
 
 ## API overview
 

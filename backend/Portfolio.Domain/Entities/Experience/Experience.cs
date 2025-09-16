@@ -1,4 +1,6 @@
-namespace Portfolio.Api.Models;
+namespace Portfolio.Domain.Entities.Experience;
+
+using Portfolio.Domain.Entities.ProfileAggregate;
 
 public class Experience
 {
@@ -13,22 +15,4 @@ public class Experience
 
     public ICollection<ExperienceBullet> Bullets { get; set; } = new List<ExperienceBullet>();
     public ICollection<ExperienceTech> Tech { get; set; } = new List<ExperienceTech>();
-}
-
-public class ExperienceBullet
-{
-    public int Id { get; set; }
-    public string Text { get; set; } = string.Empty;
-
-    public int ExperienceId { get; set; }
-    public Experience Experience { get; set; } = null!;
-}
-
-public class ExperienceTech
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    public int ExperienceId { get; set; }
-    public Experience Experience { get; set; } = null!;
 }

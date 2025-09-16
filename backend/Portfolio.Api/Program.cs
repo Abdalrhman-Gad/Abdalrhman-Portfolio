@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using Portfolio.Api.Data;
+using Portfolio.Application.Common.Interfaces;
+using Portfolio.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +7,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<PortfolioContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("Portfolio")));
+builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddCors(options =>
 {
@@ -18,13 +17,11 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod());
 });
 
-builder.Services.AddScoped<DataSeeder>();
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var seeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+    var seeder = scope.ServiceProvider.GetRequiredService<IDatabaseSeeder>();
     await seeder.SeedAsync();
 }
 

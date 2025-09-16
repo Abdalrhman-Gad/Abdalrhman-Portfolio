@@ -1,4 +1,9 @@
-namespace Portfolio.Api.Models;
+namespace Portfolio.Domain.Entities.ProfileAggregate;
+
+using Portfolio.Domain.Entities.Education;
+using Portfolio.Domain.Entities.Experience;
+using Portfolio.Domain.Entities.Projects;
+using Portfolio.Domain.Entities.Skills;
 
 public class Profile
 {
@@ -20,42 +25,4 @@ public class Profile
     public ICollection<Language> Languages { get; set; } = new List<Language>();
     public ICollection<SoftSkill> SoftSkills { get; set; } = new List<SoftSkill>();
     public ICollection<Interest> Interests { get; set; } = new List<Interest>();
-}
-
-public class Link
-{
-    public int Id { get; set; }
-    public string Label { get; set; } = string.Empty;
-    public string Url { get; set; } = string.Empty;
-    public string? Icon { get; set; }
-
-    public int ProfileId { get; set; }
-    public Profile Profile { get; set; } = null!;
-}
-
-public class Language
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    public int ProfileId { get; set; }
-    public Profile Profile { get; set; } = null!;
-}
-
-public class SoftSkill
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    public int ProfileId { get; set; }
-    public Profile Profile { get; set; } = null!;
-}
-
-public class Interest
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    public int ProfileId { get; set; }
-    public Profile Profile { get; set; } = null!;
 }
